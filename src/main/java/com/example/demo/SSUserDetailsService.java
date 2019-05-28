@@ -30,8 +30,7 @@ public class SSUserDetailsService implements UserDetailsService {
                 System.out.println("User not found with the provided username" + user.toString());
                 return null;
             }
-
-            System.out.println(" User from username " + user.toString());
+            System.out.println("User from username" + user.toString());
             return new CustomUserDetails(user, getAuthorities(user));
         }
         catch (Exception e) {
