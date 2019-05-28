@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Table(name = "User_Data")
 public class User {
 
     @Id
@@ -28,7 +29,7 @@ public class User {
     private boolean enabled;
 
     @Column(name = "username")
-    private String userName;
+    private String username;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
@@ -38,13 +39,13 @@ public class User {
     private User(){
     }
 
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String userName) {
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.enabled = enabled;
-        this.userName = userName;
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
+        this.setEmail(email);
+        this.setPassword(password);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setEnabled(enabled);
+        this.setUsername(username);
     }
 
     public long getId() {
@@ -97,12 +98,12 @@ public class User {
         this.enabled = enabled;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Collection<Role> getRoles() {

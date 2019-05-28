@@ -27,12 +27,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     private SSUserDetailsService userDetailsService;
 
     @Autowired
-    private AppUserRepository appUserRepository;
+    private UserRepository userRepository;
 
     @Override
     public UserDetailsService userDetailsServiceBean() throws
             Exception {
-            return new SSUserDetailsService(appUserRepository); }
+            return new SSUserDetailsService(userRepository); }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -46,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .logout()
                 .logoutRequestMatcher(
                         new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").permitAll()
+                .logoutSuccessUrl("/login").permitAll()//.permitAll()
                 .and()
                 .httpBasic();
 
